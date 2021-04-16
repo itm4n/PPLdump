@@ -59,6 +59,8 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     case DLL_PROCESS_DETACH:
         if (g_bDebug)
             LogToConsole(L"DllMain (process detach)\n");
+        if (g_hConsoleOutput)
+            FreeConsole();
         break;
     }
     return TRUE;
