@@ -1,0 +1,12 @@
+LIBRARY
+EXPORTS
+   LogonUserExExW @1
+   BriCreateBrokeredEvent @2
+   BriDeleteBrokeredEvent @3
+   EaCreateAggregatedEvent @4
+   EACreateAggregateEvent @5
+   EaQueryAggregatedEventParameters @6
+   EAQueryAggregateEventData @7
+   EaFreeAggregatedEventParameters @8
+   EaDeleteAggregatedEvent @9
+   EADeleteAggregateEvent @10
