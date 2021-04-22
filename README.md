@@ -5,7 +5,7 @@ This tool implements a __userland__ exploit that was initially discussed by Jame
 I wrote two blog posts about this tool. The first part is about Protected Processes concepts while the second one dicusses the bypass technique itself.
 
 - __Blog post part #1__: [Do You Really Know About LSA Protection (RunAsPPL)?](https://itm4n.github.io/lsass-runasppl/)
-- __Blog post part #2__: TODO
+- __Blog post part #2__: [Bypassing LSA Protection in Userland](https://blog.scrt.ch/2021/04/22/bypassing-lsa-protection-in-userland/)
 
 <p align="center">
   <img src="demo.gif">
