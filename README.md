@@ -1,11 +1,11 @@
 # PPLdump
 
-This tool leverages a __userland__ exploit to dump the memory of any PPL as an administrator.
+This tool implements a __userland__ exploit that was initially discussed by James Forshaw (a.k.a. [@tiraniddo](https://twitter.com/tiraniddo)) - in this [blog post](https://googleprojectzero.blogspot.com/2018/08/windows-exploitation-tricks-exploiting.html) - for __dumping the memory of any PPL__ as an administrator.
 
-For more information:
+I wrote two blog posts about this tool. The first part is about Protected Processes concepts while the second one dicusses the bypass technique itself.
 
-- __Part #1__: [Do You Really Know About LSA Protection (RunAsPPL)?](https://itm4n.github.io/lsass-runasppl/)
-- __Part #2__: TODO
+- __Blog post part #1__: [Do You Really Know About LSA Protection (RunAsPPL)?](https://itm4n.github.io/lsass-runasppl/)
+- __Blog post part #2__: TODO
 
 <p align="center">
   <img src="demo.gif">
@@ -48,7 +48,7 @@ Examples:
 
 ### Does it work on all versions of Windows?
 
-First of all, PPLs were introduced with Windows 8.1 so older versions of Windows are out of scope. This project mainly targets Windows 10 (and its server editions) but I also tested it on older versions. You will find a summary table of the tests I did in the eponymous section.
+First of all, PPLs were introduced with Windows 8.1 so older versions of Windows are obviously not supported. This project mainly targets Windows 10 (and its server editions) but I also tested it on older versions. You will find a summary table of the tests I did in the eponymous section.
 
 ### How is it different from other tools?
 
@@ -68,28 +68,40 @@ Ths short answer is "no". First, it does not involve any direct Kernel access so
 
 ## Tests
 
-<div align="center">
-
 | Windows version | Build | Edition | Arch | Admin | SYSTEM |
 | --- | :---: | :---: | :---: | :---: | :---: |
-| Windows 10 20H2 | 19042.870 | Pro | x64 | :heavy_check_mark: | :heavy_check_mark: |
-| Windows 10 1909 | 18363.1379 | Pro | x64 | :heavy_check_mark: | :heavy_check_mark: |
-| Windows Server 2019 | 17763.1817 | Standard | x64 | :heavy_check_mark: | :heavy_check_mark: |
-| Windows 8.1 | 9600 | Pro | x64 | :heavy_check_mark: | :heavy_check_mark: |
-| Windows Server 2012 R2 | 9600 | Standard | x64 | :x: | :x: |
+| Windows 10 20H2 | 19042 | Pro | x64 | :heavy_check_mark: | :heavy_check_mark: |
+| Windows 10 1909 | 18363 | Pro | x64 | :heavy_check_mark: | :heavy_check_mark: |
+| Windows 10 1507 | 10240 | Educational | x64 | :heavy_check_mark: | :heavy_check_mark: |
+| Windows 10 1507 | 10240 | Home | x64 | :heavy_check_mark: | :heavy_check_mark: |
+| Windows 10 1507 | 10240 | Pro | x64 | :heavy_check_mark: | :heavy_check_mark: |
+| Windows Server 2019 | 17763 | Standard | x64 | :heavy_check_mark: | :heavy_check_mark: |
+| Windows Server 2019 | 17763 | Essentials | x64 | :heavy_check_mark: | :heavy_check_mark: |
+| Windows 8.1 | 9600 | Pro | x64 | :warning: | :warning: |
+| Windows Server 2012 R2 | 9600 | Standard | x64 | :warning: | :warning: |
 
-</div>
+:warning: The exploit fails on fully updated Windows 8.1 / Server 2012 R2 machines. I have yet to figure out which patch caused the error.
 
-- The execution paths for an administrator and `SYSTEM` are slightly different, hence the two separate columns in the table.
-- Although the tool works on Windows 8.1, it fails on Windows Server 2012 R2 for some reason.
+```console
+[-] DefineDosDevice failed with error code 6 - The handle is invalid.
+```
+
+:warning: On Windows 8.1 / Server 2012 R2, you might also have to compile the binary statically (see "Build instructions" below).
 
 ## Build instructions
 
-This solution is composed of two projects (the executable and a payload DLL) that need to be compiled in a specific order. Everything is pre-configured, so you just have to follow these simple instructions. The compiled payload DLL is automatically embedded into the final executable.
+This Visual Studio Solution comprises two projects (the executable and a payload DLL) that need to be compiled in a specific order. Everything is pre-configured, so you just have to follow these simple instructions. The compiled payload DLL is automatically embedded into the final executable.
 
 1. Open the Solution with Visual Studio 2019.
 2. Select `Release / x64` or `Release / x86` depending on the architecture of the target machine.
 3. `Build > Build Solution`.
+
+On Windows 8.1 / Server 2012 R2, you might have to compile the binary statically.
+
+1. Right-click on the `PPLdump` project.
+2. Go to `Configuration Properties` > `C/C++` > `Code Generation`.
+3. Select `Multi-threaded (/MT)` as the `Runtime Library` option.
+4. Build the Solution.
 
 ## Credits
 
