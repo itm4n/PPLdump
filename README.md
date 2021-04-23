@@ -71,6 +71,7 @@ Ths short answer is "no". First, it does not involve any direct Kernel access so
 | Windows version | Build | Edition | Arch | Admin | SYSTEM |
 | --- | :---: | :---: | :---: | :---: | :---: |
 | Windows 10 20H2 | 19042 | Pro | x64 | :heavy_check_mark: | :heavy_check_mark: |
+| Windows 10 20H2 | 19042 | Pro | x86 | :heavy_check_mark: | :heavy_check_mark: |
 | Windows 10 1909 | 18363 | Pro | x64 | :heavy_check_mark: | :heavy_check_mark: |
 | Windows 10 1507 | 10240 | Educational | x64 | :heavy_check_mark: | :heavy_check_mark: |
 | Windows 10 1507 | 10240 | Home | x64 | :heavy_check_mark: | :heavy_check_mark: |
