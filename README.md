@@ -1,5 +1,7 @@
 # PPLdump
 
+:warning: __2022-07-24__ - As of __Windows 10 21H2 10.0.19044.1826__ (July 2022 update), the exploit implemented in PPLdump __no longer works__. A patch in NTDLL now prevents PPLs from loading _Known DLLs_. More information [here](https://itm4n.github.io/the-end-of-ppldump/).
+
 This tool implements a __userland__ exploit that was initially discussed by James Forshaw (a.k.a. [@tiraniddo](https://twitter.com/tiraniddo)) - in this [blog post](https://googleprojectzero.blogspot.com/2018/08/windows-exploitation-tricks-exploiting.html) - for __dumping the memory of any PPL__ as an administrator.
 
 I wrote two blog posts about this tool. The first part is about Protected Processes concepts while the second one dicusses the bypass technique itself.
